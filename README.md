@@ -10,3 +10,20 @@ The automobile dataset consists of 205 observations and 26 features, that contai
 ### Cleaning:
 The dataset had missing values in 7 features, to deal with them different imputation techniques were applied. The removal of the observations was not an option, considering that the dataset had a small number of them. The following are just some examples of the imputation process for some variables:
   1. Normalized Losses: As it is semantically related to the car’s risk assessment, having an accurate normalized loss value is essential for predicting the symbolling. In this case, the feature had 41 missing values, which represented 20% of the total observations (there was no pattern identified in the missingness of data). To impute the missing values, a correlation matrix was calculated, and it was possible to determine that the feature “height” has a negative correlation of 0.42; therefore, a linear regression between these 2 features was performed to impute the missing values.
+  2. Stroke; Number of Doors; Peak RPM: These features had less than 4 missing values each. The median of each feature was used to fill the missing data.
+### Muticollinearity Issues: 
+Correlation matrices and Variance Inflation Factors were considered to identify the highly correlated variables; the variables that were considered highly correlated were deleted from the dataset, as most of their info is already captured in other variables.
+### Feature Transformation:
+The variables “Horsepower” and “Normalized Losses” were right skewed, which means that some observations have large values for these features, which may affect the prediction. To reduce the impact of those observations a logarithmic transformation was applied over those features.
+### Dependent Variable Transformation:
+Symboling categorizes cars based on their safety, reliability, and overall risk, with higher values indicating greater risk relative to their price. The range of the variable is from -3 to 3. Due to the reduced amount of data, is much better to have a balanced dependent variable (when the dependent variable is imbalanced, predictive models can become biased toward the majority class, leading to poor performance for the minority class). In line with that, a redefinition of the target variable was made, in this case, the dependent variable will only have two categories, “Risky” (1, 2, 3) and “Not Risky” (-3, -2, -1, 0).
+### Feature Selection
+The features that will be used in the predictive modeling were first tested through a standard Random Forest (without hyperparameter tunning), to determine the importance of each variable. The features “aspiration” and “num.of.cylinders”, when shuffled have a really small impact on the model’s accuracy (almost a 3% decrease); and since we have a small number of observations, these features were removed.
+### Model Selection
+For the model selection process, 3 models were pre-selected for prediction (Random Forest, Boosting and Logistic Regression). For the tree-based methods, a grid search approach was used to tune some relevant hyperparameters; for logistic regression there was no tunning. For each model Leave-One-Out Cross-Validation (LOOCV) was applied to estimate the test accuracy, and, in the case of the tree-based methods, determine the best combination of hyperparameters. LOOCV is particularly useful for small datasets, as it allows the model to be trained on almost all the data. The following were the results (estimated test accuracy):
+1. Logistic Regression: 0.859
+2. Random Forest: 0.941
+3. Boosting: 0.922
+Based on the previous results, Random Forest was the selected predictive model.
+## Results
+
