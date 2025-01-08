@@ -8,4 +8,5 @@ The automobile dataset consists of 205 observations and 26 features, that contai
 
 ## Methodology
 ### Cleaning:
-jasjsakjdas
+The dataset had missing values in 7 features, to deal with them different imputation techniques were applied. The removal of the observations was not an option, considering that the dataset had a small number of them. The following are just some examples of the imputation process for some variables:
+  1. Normalized Losses: As it is semantically related to the car’s risk assessment, having an accurate normalized loss value is essential for predicting the symbolling. In this case, the feature had 41 missing values, which represented 20% of the total observations (there was no pattern identified in the missingness of data). To impute the missing values, a correlation matrix was calculated, and it was possible to determine that the feature “height” has a negative correlation of 0.42; therefore, a linear regression between these 2 features was performed to impute the missing values.
