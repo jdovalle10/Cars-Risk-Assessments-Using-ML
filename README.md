@@ -26,4 +26,8 @@ For the model selection process, 3 models were pre-selected for prediction (Rand
 3. Boosting: 0.922
 Based on the previous results, Random Forest was the selected predictive model.
 ## Results
+The following are the complete results of the Random Forest with the best hyperparameters identified in the previous section (estimated using LOOCV):
+| Accuracy | Precision | Recall | F1 Score |
+|----------|-----------|--------|----------|
+| 0.941    | 0.932     | 0.965  | 0.948    |
 
